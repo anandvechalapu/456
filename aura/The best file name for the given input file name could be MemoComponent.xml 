@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinition>
+  <Aura:Component>
+    <Aura:Attribute name="Memo" type="String" description="Memo should not be Empty" required="true" prompt="MEMO BLANK" />
+    <Aura:Attribute name="DateCreated" type="Date" description="Creation date" required="true" />
+    <Aura:Attribute name="Dow" type="String" description="Weekday index for the created Date." />
+    <Aura:Attribute name="Access" type="Boolean" description="If user has access then user able to access this page." />
+    <Aura:Handler name="init" value="{!this}" action="{!c.doInit}" />
+    <Aura:Handler name="addAction" event="c:addMemo" action="{!c.addMemo}" />
+    <Aura:Handler name="editAction" event="c:editMemo" action="{!c.editMemo}" />
+    <Aura:Handler name="deleteAction" event="c:deleteMemo" action="{!c.deleteMemo}" />
+    <Aura:Handler name="viewAction" event="c:viewMemo" action="{!c.viewMemo}" />
+    <Aura:Handler name="downloadAction" event="c:downloadMemo" action="{!c.downloadMemo}" />
+    <Aura:Handler name="submitAction" event="c:submitMemo" action="{!c.submitMemo}" />
+    <Aura:Handler name="resetAction" event="c:resetMemo" action="{!c.resetMemo}" />
+    <Aura:Method name="validateMemo" action="{!c.validateMemo}" />
+  </Aura:Component>
+</AuraDefinition>
