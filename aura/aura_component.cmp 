@@ -1,0 +1,38 @@
+<aura:component>
+    <aura:attribute name="memo" type="String" description="Memo should not be empty" />
+    <aura:attribute name="dateCreated" type="Date" description="Creation date" />
+    <aura:attribute name="dow" type="String" description="Weekday index for the created Date" />
+    <aura:attribute name="access" type="Boolean" description="If user has access then user able to access this page. If user didn’t have access then redirect to login page" />
+    <aura:attribute name="downloadData" type="Boolean" description="Clicking on Download Data will allow User to view the results in Excel format" />
+    <aura:attribute name="submit" type="Boolean" description="The Submit and Reset buttons are given on this screen, Once User have made User selections click on Submit it will add/edit the wholesaler, or click on Reset to reset the selections to the last search" />
+    <aura:attribute name="delete" type="Boolean" description="To Delete the Memo click on Delete action, it will display the confirmation message for deleting the memo then click on ok" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.access}">
+        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+            <div class="slds-size_1-of-2">
+                <lightning:input label="Memo" name="memo" value="{!v.memo}" />
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning:input label="Date Created" type="date" name="dateCreated" value="{!v.dateCreated}" />
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning:input label="Dow" name="dow" value="{!v.dow}" />
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning:button label="Download Data" onclick="{!c.downloadData}" />
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning:button label="Delete" onclick="{!c.deleteMemo}" />
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning:button label="Submit" onclick="{!c.submit}" />
+            </div>
+            <div class="slds-size_1-of-2">
+                <lightning:button label="Reset" onclick="{!c.reset}" />
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.access == false}">
+        <lightning:navigation aura:id="nav" type="standard__namedPage" attributes={{pageName:'login'}} />
+    </aura:if>
+</aura:component>
